@@ -1,0 +1,57 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#                   ServerRules — gui.yml
+#         Inventory GUI layout and appearance settings.
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+gui:
+  # Title displayed in the category selection inventory.
+  category-title: "&6&lServer Rules"
+
+  # Title displayed in the rules list inventory. %category% and %page% are available.
+  rules-title: "&6Rules: %category% &8[%page%]"
+
+  # Background filler item.
+  filler-material: "GRAY_STAINED_GLASS_PANE"
+
+  # Navigation items
+  previous-page:
+    material: "ARROW"
+    name: "&ePrevious Page"
+
+  next-page:
+    material: "ARROW"
+    name: "&eNext Page"
+
+  back-button:
+    material: "DARK_OAK_DOOR"
+    name: "&7← Back to Categories"
+
+  close-button:
+    material: "BARRIER"
+    name: "&cClose"
+
+  view-all-button:
+    material: "COMPASS"
+    name: "&eView All Rules"
+    lore:
+      - "&7Shows all rules in chat"
+
+  # Accept button (shown when acceptance is enabled)
+  accept-button:
+    not-accepted:
+      material: "RED_WOOL"
+      name: "&c✘ Click to Accept Rules"
+    accepted:
+      material: "LIME_WOOL"
+      name: "&a✔ Rules Accepted"
+
+  # Rule item appearance in the rules view
+  rule-item:
+    material: "PAPER"
+    # Available placeholders in name/lore: %text%, %id%, %severity%, %category%
+    name: "&f%text%"
+    lore:
+      - "%description%"
+      - ""
+      - "&8ID: %id%"
+      - "&8Severity: %severity%"

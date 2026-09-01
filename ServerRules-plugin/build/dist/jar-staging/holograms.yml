@@ -1,0 +1,34 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#                 ServerRules — holograms.yml
+#   Configure floating text holograms that display rules.
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#
+# Holograms are created with: /serverrules hologram create <id>
+# Note: Hologram support requires running on MC 1.19.4+ for
+#       internal Text Display entities, or DecentHolograms / HolographicDisplays.
+#
+# ─────────────────────────────────────────────────────────────
+
+holograms:
+  # Global settings
+  line-spacing: 0.3
+  refresh-interval: 0  # seconds; 0 = no refresh (static)
+
+  # Example hologram definition
+  # To create a hologram at your location: /serverrules hologram create spawn-rules
+  # The location is set automatically when you run the create command.
+  #
+  # spawn-rules:
+  #   enabled: true
+  #   world: world
+  #   x: 0.5
+  #   y: 65.0
+  #   z: 0.5
+  #   lines:
+  #     - "&6&lSERVER RULES"
+  #     - "&7━━━━━━━━━━━━━━━━━━━━━━"
+  #     - "&fBe respectful to everyone."
+  #     - "&fNo cheating or exploits."
+  #     - "&fNo spam or advertising."
+  #     - "&7"
+  #     - "&7Use &e/rules &7for all rules."

@@ -1,0 +1,56 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#                   ServerRules — config.yml
+#                   Main Plugin Configuration
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Reload with: /serverrules reload
+
+# ─── Debug ────────────────────────────────────────────────────
+# Enable verbose logging in the console.
+debug: false
+
+# ─── Acceptance System ────────────────────────────────────────
+acceptance:
+  # Set to false to disable the rule acceptance system entirely.
+  enabled: true
+
+  # Should players be prompted to accept rules when they first join?
+  require-on-first-join: true
+
+  # Should players who haven't accepted be reminded each time they join?
+  remind-unaccepted-players: true
+
+# ─── Join Reminder ────────────────────────────────────────────
+join-reminder:
+  # Show a rules reminder message when a player joins.
+  enabled: true
+  # Delay (in server ticks) before sending the join reminder. 20 ticks = 1 second.
+  delay-ticks: 20
+
+# ─── Rule Announcements ───────────────────────────────────────
+announcements:
+  # Periodically broadcast a rule reminder to all players.
+  enabled: false
+
+  # Interval in SECONDS between broadcasts.
+  interval: 300
+
+  # Mode: 'sequential' (in order) or 'random'
+  mode: sequential
+
+  # The messages to broadcast. Supports & color codes and hex &#RRGGBB.
+  # PlaceholderAPI placeholders are supported if PAPI is installed.
+  messages:
+    - "&e[ServerRules] &fRemember to read &e/rules &fbefore playing!"
+    - "&c[ServerRules] &fNo cheating or exploiting. See &e/rules &ffor details."
+    - "&6[ServerRules] &fBe respectful to all players. Type &e/rules &fto review."
+    - "&a[ServerRules] &fEnjoy your stay! Review the rules with &e/rules&f."
+
+# ─── Storage ──────────────────────────────────────────────────
+storage:
+  # Currently only 'json' is supported.
+  type: json
+
+# ─── Performance ──────────────────────────────────────────────
+performance:
+  # Cache rendered rule display lines to avoid re-colorizing on every view.
+  cache-rendered-rules: true

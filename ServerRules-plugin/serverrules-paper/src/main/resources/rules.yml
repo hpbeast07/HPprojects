@@ -1,0 +1,280 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#                   ServerRules — rules.yml
+#          Define your server rules and categories here.
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#
+# When you change these rules, increase 'rules-version' by 1.
+# Players who accepted a previous version will need to re-accept.
+#
+# Reload with: /serverrules reload
+# ─────────────────────────────────────────────────────────────
+
+# Increment this number every time you make significant rule changes.
+# Players who accepted an older version will be marked as "pending" again.
+rules-version: 1
+
+categories:
+
+  # ─── General ──────────────────────────────────────────────
+  general:
+    display-name: "&6General"
+    description: "Basic rules all players must follow."
+    icon: "BOOK"
+    icon-data: 0
+    order: 1
+    enabled: true
+    rules:
+      - id: "general-respect"
+        text: "&fRespect all players and staff."
+        description: "Treat others how you want to be treated."
+        severity: HIGH
+        enabled: true
+
+      - id: "general-no-harassment"
+        text: "&fNo harassment, bullying, discrimination, or targeted abuse."
+        description: "Any form of targeted harassment will not be tolerated."
+        severity: CRITICAL
+        enabled: true
+
+      - id: "general-no-disruption"
+        text: "&fDo not intentionally disrupt the experience of other players."
+        severity: MEDIUM
+        enabled: true
+
+      - id: "general-follow-announcements"
+        text: "&fFollow all server announcements and staff instructions."
+        severity: MEDIUM
+        enabled: true
+
+  # ─── Chat ─────────────────────────────────────────────────
+  chat:
+    display-name: "&bChat"
+    description: "Rules for chat behavior."
+    icon: "PAPER"
+    icon-data: 0
+    order: 2
+    enabled: true
+    rules:
+      - id: "chat-no-spam"
+        text: "&fNo spam or repeated messages."
+        severity: LOW
+        enabled: true
+
+      - id: "chat-no-caps"
+        text: "&fNo excessive use of capital letters."
+        severity: LOW
+        enabled: true
+
+      - id: "chat-no-advertising"
+        text: "&fNo advertising other servers without permission."
+        severity: HIGH
+        enabled: true
+
+      - id: "chat-no-malicious-links"
+        text: "&fNo posting malicious or phishing links."
+        severity: CRITICAL
+        enabled: true
+
+      - id: "chat-appropriate"
+        text: "&fKeep conversations appropriate for all ages."
+        severity: MEDIUM
+        enabled: true
+
+      - id: "chat-no-impersonation"
+        text: "&fDo not impersonate staff or other players."
+        severity: HIGH
+        enabled: true
+
+  # ─── Gameplay ─────────────────────────────────────────────
+  gameplay:
+    display-name: "&aGameplay"
+    description: "Rules about in-game behavior and mechanics."
+    icon: "DIAMOND_SWORD"
+    icon-data: 0
+    order: 3
+    enabled: true
+    rules:
+      - id: "gameplay-no-cheating"
+        text: "&fNo cheating or using unauthorized clients / hacks."
+        severity: CRITICAL
+        enabled: true
+
+      - id: "gameplay-no-exploits"
+        text: "&fNo exploiting bugs, glitches, or unintended mechanics."
+        severity: HIGH
+        enabled: true
+
+      - id: "gameplay-no-bypass"
+        text: "&fDo not attempt to bypass server restrictions."
+        severity: HIGH
+        enabled: true
+
+      - id: "gameplay-no-automation"
+        text: "&fDo not use unauthorized automation or bots."
+        severity: HIGH
+        enabled: true
+
+  # ─── Griefing & Theft ─────────────────────────────────────
+  griefing:
+    display-name: "&cGriefing"
+    description: "Rules about player builds and property."
+    icon: "TNT"
+    icon-data: 0
+    order: 4
+    enabled: true
+    rules:
+      - id: "grief-no-grief"
+        text: "&fDo not grief protected or community areas."
+        severity: HIGH
+        enabled: true
+
+      - id: "grief-no-theft"
+        text: "&fDo not steal from other players."
+        severity: HIGH
+        enabled: true
+
+      - id: "grief-respect-builds"
+        text: "&fRespect other players' builds and property."
+        severity: MEDIUM
+        enabled: true
+
+      - id: "grief-no-community-destruction"
+        text: "&fDo not intentionally destroy community infrastructure."
+        severity: CRITICAL
+        enabled: true
+
+  # ─── PvP ──────────────────────────────────────────────────
+  pvp:
+    display-name: "&4PvP"
+    description: "Rules around player versus player combat."
+    icon: "IRON_SWORD"
+    icon-data: 0
+    order: 5
+    enabled: true
+    rules:
+      - id: "pvp-follow-rules"
+        text: "&fFollow the server's designated PvP rules and zones."
+        severity: MEDIUM
+        enabled: true
+
+      - id: "pvp-no-exploits"
+        text: "&fNo unfair combat exploits or hacks."
+        severity: HIGH
+        enabled: true
+
+      - id: "pvp-respect-zones"
+        text: "&fRespect safe zones and protected areas."
+        severity: HIGH
+        enabled: true
+
+  # ─── Economy & Trading ────────────────────────────────────
+  economy:
+    display-name: "&6Economy"
+    description: "Rules about trading and the server economy."
+    icon: "GOLD_INGOT"
+    icon-data: 0
+    order: 6
+    enabled: true
+    rules:
+      - id: "economy-no-scamming"
+        text: "&fDo not scam other players in trades or deals."
+        severity: HIGH
+        enabled: true
+
+      - id: "economy-no-bugs"
+        text: "&fDo not exploit economy bugs or duplication glitches."
+        severity: CRITICAL
+        enabled: true
+
+      - id: "economy-no-manipulation"
+        text: "&fDo not manipulate server systems using exploits."
+        severity: HIGH
+        enabled: true
+
+      - id: "economy-follow-trading-rules"
+        text: "&fFollow all marketplace and trading restrictions."
+        severity: MEDIUM
+        enabled: true
+
+  # ─── Accounts ─────────────────────────────────────────────
+  accounts:
+    display-name: "&7Accounts"
+    description: "Rules about Minecraft accounts and access."
+    icon: "PLAYER_HEAD"
+    icon-data: 0
+    order: 7
+    enabled: true
+    rules:
+      - id: "accounts-no-impersonation"
+        text: "&fDo not impersonate another player or staff member."
+        severity: HIGH
+        enabled: true
+
+      - id: "accounts-no-sharing"
+        text: "&fDo not share your account with others."
+        severity: MEDIUM
+        enabled: true
+
+      - id: "accounts-no-unauthorized-access"
+        text: "&fDo not attempt unauthorized access to another player's account."
+        severity: CRITICAL
+        enabled: true
+
+  # ─── Staff ────────────────────────────────────────────────
+  staff:
+    display-name: "&dStaff"
+    description: "Rules regarding staff interactions."
+    icon: "NETHER_STAR"
+    icon-data: 0
+    order: 8
+    enabled: true
+    rules:
+      - id: "staff-respect"
+        text: "&fRespect all staff members."
+        severity: MEDIUM
+        enabled: true
+
+      - id: "staff-no-impersonation"
+        text: "&fDo not impersonate staff in any way."
+        severity: HIGH
+        enabled: true
+
+      - id: "staff-no-abuse-tickets"
+        text: "&fDo not abuse the ticket or report system."
+        severity: MEDIUM
+        enabled: true
+
+      - id: "staff-follow-instructions"
+        text: "&fFollow staff instructions when they relate to server rules."
+        severity: HIGH
+        enabled: true
+
+  # ─── Security ─────────────────────────────────────────────
+  security:
+    display-name: "&cSecurity"
+    description: "Rules protecting the server and its players."
+    icon: "SHIELD"
+    icon-data: 0
+    order: 9
+    enabled: true
+    rules:
+      - id: "security-no-attacks"
+        text: "&fDo not attempt to attack or compromise the server."
+        severity: CRITICAL
+        enabled: true
+
+      - id: "security-no-vulnerability-abuse"
+        text: "&fDo not abuse vulnerabilities or exploits."
+        severity: CRITICAL
+        enabled: true
+
+      - id: "security-no-malware"
+        text: "&fDo not distribute malicious software or harmful links."
+        severity: CRITICAL
+        enabled: true
+
+      - id: "security-report-exploits"
+        text: "&fReport serious security exploits to server staff immediately."
+        description: "Responsible disclosure helps protect everyone."
+        severity: LOW
+        enabled: true

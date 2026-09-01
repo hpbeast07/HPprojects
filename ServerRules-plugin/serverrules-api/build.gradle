@@ -1,0 +1,11 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    // No external dependencies — pure Java API
+}
+
+jar {
+    archiveBaseName = 'serverrules-api'
+}

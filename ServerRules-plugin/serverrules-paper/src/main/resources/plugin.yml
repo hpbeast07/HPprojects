@@ -1,0 +1,63 @@
+name: ServerRules
+version: '${version}'
+main: com.hpmcpe.serverrules.paper.ServerRulesPaperPlugin
+api-version: '1.21'
+description: Professional Server Rules & Regulations Management Plugin
+authors: [ hpmcpe ]
+website: https://github.com/hpmcpe/ServerRules
+
+softdepend:
+  - PlaceholderAPI
+  - Floodgate
+  - Geyser-Spigot
+  - Geyser-Paper
+  - DecentHolograms
+  - HolographicDisplays
+
+commands:
+  rules:
+    description: View the server rules
+    usage: /rules [accept|status|search <keyword>|help]
+    aliases: [ serverrule, srules ]
+    permission: serverrules.use
+
+  serverrules:
+    description: Manage server rules (admin)
+    usage: /serverrules <subcommand> [args]
+    permission: serverrules.use
+
+permissions:
+  serverrules.use:
+    description: Allows using /rules
+    default: true
+
+  serverrules.view:
+    description: Allows viewing the rules GUI and list
+    default: true
+
+  serverrules.accept:
+    description: Allows accepting the rules
+    default: true
+
+  serverrules.search:
+    description: Allows searching rules with /rules search
+    default: true
+
+  serverrules.reload:
+    description: Allows reloading ServerRules configuration
+    default: op
+
+  serverrules.manage:
+    description: Allows adding, removing, and editing rules via commands
+    default: op
+
+  serverrules.admin:
+    description: Full admin access (stats, reset, version)
+    default: op
+    children:
+      serverrules.reload: true
+      serverrules.manage: true
+
+  serverrules.bypass:
+    description: Bypass the rule acceptance requirement
+    default: false

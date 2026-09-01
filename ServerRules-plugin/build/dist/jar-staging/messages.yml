@@ -1,0 +1,36 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#                 ServerRules — messages.yml
+#           All player-facing messages in one place.
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Supports: & color codes, &#RRGGBB hex colors
+# Placeholders: %version%, %player%
+
+messages:
+  no-permission: "&cYou do not have permission to use this command."
+
+  rules-accepted: "&a✔ You have accepted the server rules (version &f%version%&a)."
+  rules-already-accepted: "&7You have already accepted the current rules (version &f%version%&7)."
+  acceptance-disabled: "&cRule acceptance is not enabled on this server."
+
+  reload-success: "&aServerRules has been reloaded successfully."
+  reload-failed:  "&cReload failed. Check console for details."
+
+  player-not-found: "&cPlayer '&e%player%&c' was not found."
+
+  # Unaccepted reminder shown on join
+  unaccepted-reminder: "&c&l[!] &eYou have not accepted the current server rules (v%version%). Type &a/rules accept &eto accept them."
+
+# ─── Join Reminder ────────────────────────────────────────────
+join-reminder:
+  message:
+    - "&7━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    - "         &6&lSERVER RULES"
+    - "&7━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    - ""
+    - "&fPlease make sure you have read and understood"
+    - "&fthe server rules before playing."
+    - ""
+    - "&7Type &e/rules &7to view them in full."
+    - "&7Type &a/rules accept &7to accept them."
+    - ""
+    - "&7━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

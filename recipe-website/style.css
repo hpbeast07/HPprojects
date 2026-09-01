@@ -1,0 +1,96 @@
+* {
+    margin: 0%;
+}
+#a{
+    height: 100px;
+    width: device-width;
+    background-color: rgb(0, 193, 103);
+    text-align: center;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.search-box{
+    border: 10px;
+    height: 30px;
+    width: 98%;
+    border-radius: 15px;
+    margin-top: 12px;
+    
+}
+#b{
+    text-align: center;
+    padding-top: 30px;
+
+}
+#c{
+    text-align: center;
+    margin-left: 45%;
+    margin-top: 20px;
+    padding: 5px;
+}
+.container{
+    display: inline-block;
+    height:260px;
+    width: 250px;
+    background-color:rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px;
+}
+#d{
+    margin-top: 50px;
+    margin-left: 190px; 
+    text-align: left;
+}
+#e{
+    margin-left: 60px;
+    text-align: left;
+}
+#f{
+    margin-left:60px;
+    text-align: left;
+}
+#g{
+    margin-top: 40px;
+    margin-left: 504px;
+    text-align: left;
+}
+.untitled{
+    height: 150px;
+    width: 100%;
+    border-top-left-radius: 20px; border-top-right-radius: 20px;
+}
+.pancake{
+    height: 150px;
+    width: 100%;
+    border-top-left-radius: 20px; border-top-right-radius: 20px;
+}
+.cake{
+    height: 150px;
+    width: 100%;
+    border-top-left-radius: 20px; border-top-right-radius: 20px;
+}
+.Carbonara{
+    height: 150px;
+    width: 100%;
+    border-top-left-radius: 20px; border-top-right-radius: 20px;
+}
+#h{
+    height: 40px;
+    width: device-width;
+    background-color: rgb(0, 193, 103);
+    text-align: center;
+    margin-top: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.container-text{
+    margin-left: 10px;
+}
+.p-text{
+    margin-left: 10px;
+}
+.read-more{
+    margin-left: 10px;
+    text-decoration: none;
+}

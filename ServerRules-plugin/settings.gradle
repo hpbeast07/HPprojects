@@ -1,0 +1,5 @@
+rootProject.name = 'ServerRules'
+
+include 'serverrules-api'
+include 'serverrules-core'
+include 'serverrules-paper'

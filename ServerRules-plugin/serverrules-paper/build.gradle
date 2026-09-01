@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+repositories {
+    maven {
+        name = 'opencollab'
+        url = 'https://repo.opencollab.dev/main/'
+    }
+}
+
+dependencies {
+    implementation project(':serverrules-api')
+    implementation project(':serverrules-core')
+
+    compileOnly 'io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT'
+    compileOnly 'me.clip:placeholderapi:2.11.6'
+    // Floodgate for Bedrock detection
+    compileOnly 'org.geysermc.floodgate:api:2.2.2-SNAPSHOT'
+
+    // Shade core + api into the plugin JAR
+    implementation 'org.yaml:snakeyaml:2.2'
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+shadowJar {
+    archiveBaseName = 'ServerRules'
+    archiveClassifier = ''
+    archiveVersion = project.version
+
+    relocate 'org.yaml.snakeyaml', 'com.hpmcpe.serverrules.lib.snakeyaml'
+    relocate 'com.google.gson', 'com.hpmcpe.serverrules.lib.gson'
+}
+
+build.dependsOn shadowJar
+jar.enabled = false
+
+processResources {
+    def props = [version: project.version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand props
+    }
+}
