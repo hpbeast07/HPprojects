@@ -1,0 +1,21 @@
+# ninja log v7
+2	123	8102611264790768	glm-populate-prefix/src/glm-populate-stamp/glm-populate-mkdir	684def9a74ee37d1
+2	123	8102611264790768	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-mkdir	684def9a74ee37d1
+124	89098	8102612154458598	glm-populate-prefix/src/glm-populate-stamp/glm-populate-download	2bd7e6ca71b014b0
+124	89098	8102612154458598	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-download	2bd7e6ca71b014b0
+89098	89970	8102612163223997	glm-populate-prefix/src/glm-populate-stamp/glm-populate-update_disconnected	e33c4f2730b076cb
+89098	89970	8102612163223997	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-update_disconnected	e33c4f2730b076cb
+89971	90153	8102612165063459	glm-populate-prefix/src/glm-populate-stamp/glm-populate-patch_disconnected	46c2c0244b63204e
+89971	90153	8102612165063459	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-patch_disconnected	46c2c0244b63204e
+90153	90329	8102612166820676	glm-populate-prefix/src/glm-populate-stamp/glm-populate-configure	23cca2bdff15efd
+90153	90329	8102612166820676	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-configure	23cca2bdff15efd
+90329	90527	8102612168805846	glm-populate-prefix/src/glm-populate-stamp/glm-populate-build	7df12b63d30999d0
+90329	90527	8102612168805846	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-build	7df12b63d30999d0
+90527	90700	8102612170531461	glm-populate-prefix/src/glm-populate-stamp/glm-populate-install	4e2a812626b83537
+90527	90700	8102612170531461	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-install	4e2a812626b83537
+90701	90866	8102612172183816	glm-populate-prefix/src/glm-populate-stamp/glm-populate-test	39cadc88305fc828
+90701	90866	8102612172183816	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-test	39cadc88305fc828
+90866	91108	8102612174552061	CMakeFiles/glm-populate-complete	678d1d59626d4fb3
+90866	91108	8102612174552061	glm-populate-prefix/src/glm-populate-stamp/glm-populate-done	678d1d59626d4fb3
+90866	91108	8102612174552061	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/CMakeFiles/glm-populate-complete	678d1d59626d4fb3
+90866	91108	8102612174552061	C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-done	678d1d59626d4fb3

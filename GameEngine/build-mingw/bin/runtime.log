@@ -1,0 +1,30 @@
+[03:18:56.712] [INFO ] === GameEngine Runtime starting ===
+[03:18:56.720] [INFO ] Built: Sep  5 2026 03:15:33
+[03:18:56.810] [INFO ] GLFW initialized (version 3.4.0 Win32 WGL Null EGL OSMesa MinGW-w64)
+[03:18:57.394] [INFO ] Window created: 1280x720 "GameEngine Runtime"
+[03:18:57.400] [INFO ] OpenGL Info:
+[03:18:57.402] [INFO ]   Vendor   : Intel
+[03:18:57.403] [INFO ]   Renderer : Intel(R) UHD Graphics
+[03:18:57.405] [INFO ]   Version  : 4.5.0 - Build 27.20.100.8681
+[03:18:57.407] [INFO ]   GLSL     : 4.50 - Build 27.20.100.8681
+[03:18:57.411] [INFO ] Entering main loop
+[03:22:49.320] [INFO ] === GameEngine Runtime starting ===
+[03:22:49.337] [INFO ] Built: Sep  5 2026 03:15:33
+[03:22:49.383] [INFO ] GLFW initialized (version 3.4.0 Win32 WGL Null EGL OSMesa MinGW-w64)
+[03:22:49.686] [INFO ] Window created: 1280x720 "GameEngine Runtime"
+[03:22:49.689] [INFO ] OpenGL Info:
+[03:22:49.692] [INFO ]   Vendor   : Intel
+[03:22:49.693] [INFO ]   Renderer : Intel(R) UHD Graphics
+[03:22:49.694] [INFO ]   Version  : 4.5.0 - Build 27.20.100.8681
+[03:22:49.696] [INFO ]   GLSL     : 4.50 - Build 27.20.100.8681
+[03:22:49.697] [INFO ] Entering main loop
+[03:23:22.863] [INFO ] === GameEngine Runtime starting ===
+[03:23:22.873] [INFO ] Built: Sep  5 2026 03:15:33
+[03:23:22.955] [INFO ] GLFW initialized (version 3.4.0 Win32 WGL Null EGL OSMesa MinGW-w64)
+[03:23:23.353] [INFO ] Window created: 1280x720 "GameEngine Runtime"
+[03:23:23.358] [INFO ] OpenGL Info:
+[03:23:23.360] [INFO ]   Vendor   : Intel
+[03:23:23.362] [INFO ]   Renderer : Intel(R) UHD Graphics
+[03:23:23.364] [INFO ]   Version  : 4.5.0 - Build 27.20.100.8681
+[03:23:23.368] [INFO ]   GLSL     : 4.50 - Build 27.20.100.8681
+[03:23:23.370] [INFO ] Entering main loop

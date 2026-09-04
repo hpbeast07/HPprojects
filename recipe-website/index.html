@@ -3,52 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe</title>
+    <meta name="description" content="Recipes is a curated collection of vibrant, approachable recipes for every kind of cook.">
+    <title>Recipes — Recipes worth gathering for</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href=".\images\recipe-food-logo.jpg" type="image/x-icon">
+    <link rel="icon" href="images/recipe-food-logo.jpg" type="image/jpeg">
 </head>
 <body>
-    <form>
-        <h2 id="a" style="color:white">Recipe<br>
-            <input type="search" placeholder="   Search Recipes..." class="search-box">
-        </h2>
-        <h1 id="b">Filter Recipes by Category</h1>
-        <select id="c">
-            <option>All</option>
-            <option>Vegetarian</option>
-            <option>Non-Vegetarian</option>
-            <option>North Indian</option>
-            <option>South Indian</option>
-            <option>Italian</option>
-            <option>Chinese</option>
-            <option>Sweet & Snacks</option>
-        </select><br><br>
+    <div class="page-glow page-glow--one" aria-hidden="true"></div>
+    <div class="page-glow page-glow--two" aria-hidden="true"></div>
 
-        <div class="container" id="d">
-            <img src=".\images\Untitled.jpg" class="untitled">
-            <h2 class="container-text">Vegan Smoothie Bowl</h2>
-            <p class="p-text">Delicious vegan smoothie bowl with fresh fruits and granola</p><br>
-            <a href="#" class="read-more">Read More</a>
+    <header class="site-header">
+        <a class="brand" href="#home" aria-label="Recipes home">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none">
+                    <path d="M9.7 13.4c0-4.6 2.8-7.4 6.3-7.4s6.3 2.8 6.3 7.4v2.2H9.7v-2.2Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                    <path d="M8 17h16M12.2 21h7.6M16 17v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+            </span>
+            <span>Recipes</span>
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+            <a class="is-active" href="#home">Home</a>
+            <a href="#recipes">Recipes</a>
+            <a href="#about">Our story</a>
+        </nav>
+
+        <a class="header-action" href="#newsletter">
+            Weekly menu
+            <span aria-hidden="true">↗</span>
+        </a>
+    </header>
+
+    <main>
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow eyebrow--light"><span></span>Simple food, beautifully made</p>
+                <h1 id="hero-title">Find your next <em>favourite</em> bite.</h1>
+                <p class="hero-description">Thoughtful recipes for slow mornings, lively tables, and every delicious moment in between.</p>
+
+                <form class="recipe-search" id="recipe-search-form" role="search">
+                    <label class="sr-only" for="recipe-search">Search recipes</label>
+                    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="10.8" cy="10.8" r="5.8"></circle>
+                        <path d="m16 16 4.2 4.2"></path>
+                    </svg>
+                    <input id="recipe-search" type="search" autocomplete="off" placeholder="Search pasta, pancakes, cake...">
+                    <button class="clear-search" id="clear-search" type="button" aria-label="Clear search" hidden>×</button>
+                    <button class="search-submit" type="submit">Explore <span aria-hidden="true">→</span></button>
+                </form>
+
+                <p class="popular-searches">
+                    <span>Try:</span>
+                    <button type="button" data-quick-search="breakfast">Breakfast</button>
+                    <button type="button" data-quick-search="pasta">Pasta</button>
+                    <button type="button" data-quick-search="dessert">Dessert</button>
+                </p>
+
+                <div class="hero-stats" aria-label="Recipes recipe highlights">
+                    <div><strong>180<span>+</span></strong><small>weeknight recipes</small></div>
+                    <div><strong>25<span> min</span></strong><small>average cook time</small></div>
+                    <div><strong>4.9<span>/5</span></strong><small>from home cooks</small></div>
+                </div>
+            </div>
+
+            <div class="hero-art" aria-label="Featured vegan smoothie bowl">
+                <div class="hero-orbit hero-orbit--large" aria-hidden="true"></div>
+                <div class="hero-orbit hero-orbit--small" aria-hidden="true"></div>
+                <div class="hero-image-card">
+                    <img src="images/Untitled.jpg" alt="A colorful vegan smoothie bowl topped with fresh fruit" fetchpriority="high">
+                    <div class="hero-image-shine" aria-hidden="true"></div>
+                    <div class="image-caption">
+                        <span>Today’s pick</span>
+                        <strong>Vegan smoothie bowl</strong>
+                    </div>
+                </div>
+                <div class="floating-note floating-note--rating">
+                    <span class="floating-icon">✦</span>
+                    <div><strong>4.9 rating</strong><small>Loved by 2.4k cooks</small></div>
+                </div>
+                <div class="floating-note floating-note--time">
+                    <span class="time-icon" aria-hidden="true">◷</span>
+                    <div><strong>10 minutes</strong><small>Bright &amp; nourishing</small></div>
+                </div>
+                <button class="round-scroll-button" type="button" data-scroll-recipes aria-label="Browse featured recipes">
+                    <span>Scroll to explore</span>
+                    <b aria-hidden="true">↓</b>
+                </button>
+            </div>
+        </section>
+
+        <section class="recipe-hub" id="recipes" aria-labelledby="recipes-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow"><span></span>Curated for your table</p>
+                    <h2 id="recipes-title">Made to be <em>shared.</em></h2>
+                </div>
+                <p>From bright breakfast bowls to rich, comforting classics—discover recipes that make everyday cooking feel special.</p>
+            </div>
+
+            <div class="explore-toolbar">
+                <div class="filter-list" role="group" aria-label="Filter recipes by category">
+                    <button class="filter-button is-selected" type="button" data-filter="all" aria-pressed="true">All recipes <span>04</span></button>
+                    <button class="filter-button" type="button" data-filter="breakfast" aria-pressed="false">Breakfast</button>
+                    <button class="filter-button" type="button" data-filter="vegetarian" aria-pressed="false">Vegetarian</button>
+                    <button class="filter-button" type="button" data-filter="italian" aria-pressed="false">Italian</button>
+                    <button class="filter-button" type="button" data-filter="dessert" aria-pressed="false">Sweet treats</button>
+                </div>
+                <p class="filter-status" id="filter-status" aria-live="polite">Showing all 4 recipes</p>
+            </div>
+
+            <div class="recipe-grid" id="recipe-grid">
+                <article class="recipe-card recipe-card--smoothie" data-recipe-id="smoothie" data-categories="breakfast vegetarian vegan healthy" data-search="vegan smoothie bowl fruit granola breakfast healthy vegetarian plant based">
+                    <div class="recipe-media">
+                        <img src="images/Untitled.jpg" alt="Vegan smoothie bowl with fruit and granola" loading="lazy">
+                        <span class="recipe-label">Plant-powered</span>
+                        <button class="save-button" type="button" aria-label="Save Vegan Smoothie Bowl" aria-pressed="false"><span aria-hidden="true">♡</span></button>
+                    </div>
+                    <div class="recipe-content">
+                        <div class="recipe-tags"><span>Breakfast</span><span>Vegan</span></div>
+                        <h3>Vegan Smoothie Bowl</h3>
+                        <p>A sunlit blend of ripe fruit, creamy coconut, and a crunchy granola finish.</p>
+                        <div class="recipe-footer">
+                            <span><i aria-hidden="true">◷</i> 10 min</span>
+                            <button class="recipe-link" type="button" data-open-recipe="smoothie">View recipe <b aria-hidden="true">→</b></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="recipe-card recipe-card--pancakes" data-recipe-id="pancakes" data-categories="breakfast vegetarian sweet" data-search="gluten free pancakes breakfast fluffy maple vegetarian sweet">
+                    <div class="recipe-media">
+                        <img src="images/pancakes.jpg" alt="Stack of golden gluten-free pancakes" loading="lazy">
+                        <span class="recipe-label">Weekend favourite</span>
+                        <button class="save-button" type="button" aria-label="Save Gluten-Free Pancakes" aria-pressed="false"><span aria-hidden="true">♡</span></button>
+                    </div>
+                    <div class="recipe-content">
+                        <div class="recipe-tags"><span>Breakfast</span><span>Gluten-free</span></div>
+                        <h3>Gluten-Free Pancakes</h3>
+                        <p>Cloud-soft pancakes with golden edges and all the cozy Sunday energy.</p>
+                        <div class="recipe-footer">
+                            <span><i aria-hidden="true">◷</i> 20 min</span>
+                            <button class="recipe-link" type="button" data-open-recipe="pancakes">View recipe <b aria-hidden="true">→</b></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="recipe-card recipe-card--cake" data-recipe-id="cake" data-categories="dessert vegetarian sweet" data-search="dark chocolate cake dairy free dessert sweet vegetarian baking cocoa">
+                    <div class="recipe-media">
+                        <img src="images/cake.jpg" alt="Slice of rich dark chocolate cake" loading="lazy">
+                        <span class="recipe-label">Deeply chocolatey</span>
+                        <button class="save-button" type="button" aria-label="Save Dark Chocolate Cake" aria-pressed="false"><span aria-hidden="true">♡</span></button>
+                    </div>
+                    <div class="recipe-content">
+                        <div class="recipe-tags"><span>Dessert</span><span>Dairy-free</span></div>
+                        <h3>Dark Chocolate Cake</h3>
+                        <p>A tender, indulgent chocolate cake with a beautifully fudgy crumb.</p>
+                        <div class="recipe-footer">
+                            <span><i aria-hidden="true">◷</i> 45 min</span>
+                            <button class="recipe-link" type="button" data-open-recipe="cake">View recipe <b aria-hidden="true">→</b></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="recipe-card recipe-card--carbonara" data-recipe-id="carbonara" data-categories="italian dinner non-vegetarian pasta" data-search="spaghetti carbonara pasta italian dinner creamy bacon parmesan">
+                    <div class="recipe-media">
+                        <img src="images/Spaghetti-Carbonara.jpg" alt="Creamy spaghetti carbonara topped with parmesan" loading="lazy">
+                        <span class="recipe-label">Italian classic</span>
+                        <button class="save-button" type="button" aria-label="Save Spaghetti Carbonara" aria-pressed="false"><span aria-hidden="true">♡</span></button>
+                    </div>
+                    <div class="recipe-content">
+                        <div class="recipe-tags"><span>Italian</span><span>Dinner</span></div>
+                        <h3>Spaghetti Carbonara</h3>
+                        <p>Silky egg, parmesan, and pepper sauce wrapped around spaghetti just right.</p>
+                        <div class="recipe-footer">
+                            <span><i aria-hidden="true">◷</i> 25 min</span>
+                            <button class="recipe-link" type="button" data-open-recipe="carbonara">View recipe <b aria-hidden="true">→</b></button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="empty-state" id="empty-state" hidden>
+                <span aria-hidden="true">⌕</span>
+                <h3>No matching recipes yet</h3>
+                <p>Try a different ingredient or return to all our recipes.</p>
+                <button type="button" id="reset-filters">Show all recipes</button>
+            </div>
+        </section>
+
+        <section class="story-banner" id="about" aria-labelledby="story-title">
+            <div class="story-shape story-shape--one" aria-hidden="true"></div>
+            <div class="story-shape story-shape--two" aria-hidden="true"></div>
+            <p class="eyebrow eyebrow--light"><span></span>Our kitchen philosophy</p>
+            <h2 id="story-title">Good food tastes better<br>when it brings us <em>together.</em></h2>
+            <a href="#newsletter" class="story-link">Join our table <span aria-hidden="true">↗</span></a>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="newsletter">
+        <div class="footer-top">
+            <div>
+                <a class="brand brand--footer" href="#home" aria-label="Recipes home">
+                    <span class="brand-mark" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <path d="M9.7 13.4c0-4.6 2.8-7.4 6.3-7.4s6.3 2.8 6.3 7.4v2.2H9.7v-2.2Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                            <path d="M8 17h16M12.2 21h7.6M16 17v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <span>Recipes</span>
+                </a>
+                <p class="footer-copy">Approachable recipes for a more delicious everyday.</p>
+            </div>
+
+            <div class="newsletter-block">
+                <p class="newsletter-title">A fresh menu, once a week.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <label class="sr-only" for="newsletter-email">Your email address</label>
+                    <input id="newsletter-email" type="email" placeholder="Your email address" required>
+                    <button type="submit" aria-label="Subscribe to weekly menu">→</button>
+                </form>
+            </div>
         </div>
-        <div class="container" id="e">
-            <img src=".\images\pancakes.jpg" class="pancake">
-            <h2 class="container-text">Gluten-Free Panckes</h2>
-            <p class="p-text">Fluffy gluten-free pancakes perfect for breakfast</p><br>
-            <a href="#" class="read-more">Read More</a>
+        <div class="footer-bottom">
+            <p>© 2026 Recipes. Made with a little extra love.</p>
+            <div><a href="#home">Instagram</a><a href="#home">Pinterest</a><a href="#home">Contact</a></div>
         </div>
-        <div class="container" id="f">
-            <img src=".\images\cake.jpg" class="cake">
-            <h2 class="container-text">Dairy Chocolate Cake</h2>
-            <p class="p-text">A rich and moist chocolate cake with no dairy products</p><br>
-            <a href="#" class="read-more">Read More</a>
-        </div><br><br>
-        <div class="container" id="g">
-            <img src=".\images\Spaghetti-Carbonara.jpg" class="cake">
-            <h2 class="container-text">Spaghetti Carbonara</h2>
-            <p class="p-text">A classic italian spaghetti dish with creamy sauce and bacon</p><br>
-            <a href="#" class="read-more">Read More</a>
+    </footer>
+
+    <dialog class="recipe-dialog" id="recipe-dialog" aria-labelledby="dialog-title">
+        <div class="dialog-grid">
+            <div class="dialog-image-wrap"><img id="dialog-image" src="images/Untitled.jpg" alt=""></div>
+            <div class="dialog-copy">
+                <button class="dialog-close" type="button" data-close-dialog aria-label="Close recipe details">×</button>
+                <p class="eyebrow"><span></span><span id="dialog-category">Featured recipe</span></p>
+                <h2 id="dialog-title">Recipe title</h2>
+                <p id="dialog-description"></p>
+                <div class="dialog-meta" id="dialog-meta"></div>
+                <h3>What you’ll need</h3>
+                <ul id="dialog-ingredients"></ul>
+                <button class="dialog-action" type="button" data-close-dialog>Got it, let's cook <span aria-hidden="true">→</span></button>
+            </div>
         </div>
-        <p id="h" style="color:white">© 2026 Recipe Hub. All rights reserved</p>
-    </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+# Target labels
+ glm-populate
+# Source files and their labels
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/CMakeFiles/glm-populate
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/CMakeFiles/glm-populate.rule
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/CMakeFiles/glm-populate-complete.rule
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-build.rule
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-configure.rule
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-download.rule
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-install.rule
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-mkdir.rule
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-patch_disconnected.rule
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-test.rule
+C:/Users/Harah/.gemini/antigravity/scratch/GameEngine/build-mingw/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-update_disconnected.rule
