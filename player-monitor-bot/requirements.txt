@@ -1,4 +1,0 @@
-﻿discord.py>=2.4.0
-python-dotenv>=1.0.0
-mcstatus>=14.0.0
-
