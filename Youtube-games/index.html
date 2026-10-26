@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROLL RUSH: SKYLINE</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <h1>ROLL RUSH</h1>
+            <p>SKYLINE</p>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="main-menu" class="menu">
+        <h1>ROLL RUSH: SKYLINE</h1>
+        <div class="menu-buttons">
+            <button id="play-btn">PLAY</button>
+            <button id="levels-btn">LEVELS</button>
+            <button id="balls-btn">BALLS</button>
+            <button id="trails-btn">TRAILS</button>
+            <button id="settings-btn">SETTINGS</button>
+        </div>
+    </div>
+
+    <!-- Level Select Menu -->
+    <div id="level-select-menu" class="menu" style="display: none;">
+        <h1>SELECT LEVEL</h1>
+        <div id="levels-grid" class="levels-grid"></div>
+        <button id="back-to-main-from-levels">BACK</button>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container" style="display: none;">
+        <div id="ui-overlay">
+            <div id="ui-top">
+                <div id="level-display">LEVEL 1</div>
+                <div id="score-display">SCORE: 0</div>
+                <div id="coins-display">COINS: 0</div>
+                <div id="combo-display">COMBO: x1</div>
+            </div>
+            <div id="ui-bottom">
+                <button id="ability-boost" class="ability-btn">BOOST</button>
+                <button id="ability-shield" class="ability-btn">SHIELD</button>
+                <button id="ability-magnet" class="ability-btn">MAGNET</button>
+                <button id="ability-ghost" class="ability-btn">GHOST</button>
+            </div>
+        </div>
+        <div id="pause-menu" class="menu">
+            <h1>PAUSED</h1>
+            <div class="menu-buttons">
+                <button id="resume-btn">RESUME</button>
+                <button id="restart-btn">RESTART</button>
+                <button id="settings-btn-pause">SETTINGS</button>
+                <button id="quit-to-main-btn">EXIT</button>
+            </div>
+        </div>
+        <div id="game-over-menu" class="menu">
+            <h1>LEVEL FAILED</h1>
+            <div id="game-over-stats">
+                <div>SCORE: <span id="final-score">0</span></div>
+                <div>BEST SCORE: <span id="best-score">0</span></div>
+                <div>COINS: <span id="final-coins">0</span></div>
+            </div>
+            <div class="menu-buttons">
+                <button id="try-again-btn">TRY AGAIN</button>
+                <button id="level-select-btn">LEVEL SELECT</button>
+            </div>
+        </div>
+        <div id="level-complete-menu" class="menu">
+            <h1>LEVEL COMPLETE!</h1>
+            <div id="stars-container">
+                <!-- Stars will be inserted here -->
+            </div>
+            <div id="level-complete-stats">
+                <div>SCORE: <span id="level-score">0</span></div>
+                <div>BEST SCORE: <span id="level-best-score">0</span></div>
+                <div>TIME: <span id="level-time">0.00s</span></div>
+                <div>BEST TIME: <span id="level-best-time">0.00s</span></div>
+                <div>COINS: <span id="level-coins">0</span>/<span id="total-coins">0</span></div>
+            </div>
+            <div class="menu-buttons">
+                <button id="next-level-btn">NEXT LEVEL</button>
+                <button id="replay-level-btn">REPLAY</button>
+                <button id="level-select-complete-btn">LEVEL SELECT</button>
+            </div>
+        </div>
+        <!-- Canvas for Three.js -->
+        <canvas id="game-canvas"></canvas>
+    </div>
+
+    <!-- Include Three.js and Cannon-es from CDN for simplicity -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js"></script>
+    <script type="module" src="src/js/main.js"></script>
+</body>
+</html>

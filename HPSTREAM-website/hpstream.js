@@ -48,6 +48,8 @@
     {
       id: 'midnight-horizon',
       title: 'Midnight Horizon',
+      tmdbId: '603', // Matrix example
+      tmdbId: '603',
       type: 'movie',
       category: 'hollywood',
       tagline: 'When the sun sets, the truth rises.',
@@ -72,6 +74,9 @@
     {
       id: 'rangrezz',
       title: 'Rangrezz: Symphony of Fire',
+      tmdbId: '557', // Spider-man example
+      tmdbId: '557',
+      tmdbId: '557',
       type: 'movie',
       category: 'bollywood',
       tagline: 'Every colour tells a story of rebellion and love.',
@@ -96,6 +101,9 @@
     {
       id: 'kage-no-kishi',
       title: 'Kage no Kishi: Shadow Knight',
+      tmdbId: '94605',
+      tmdbId: '94605',
+      tmdbId: '94605', // Anime example
       type: 'series',
       category: 'anime',
       tagline: 'The Shadow Knight remembers every lost timeline.',
@@ -962,7 +970,7 @@
   }
 
   function loadPlayerServer(serverKey) {
-    const player = document.getElementById('nexstreamPlayer');
+    const player = document.getElementById('videoContainer');
     const loading = document.getElementById('playerLoading');
     const statusDot = document.getElementById('serverStatusDot');
     const statusText = document.getElementById('serverStatusText');
@@ -976,7 +984,7 @@
     // Set loading state
     if (loading) loading.style.display = 'flex';
     if (statusDot) statusDot.className = 'server-status-dot loading';
-    if (statusText) statusText.textContent = `${server.name} se connect ho raha hai...`;
+    if (statusText) statusText.textContent = `${server.name} connecting...`;
     if (statusPing) statusPing.textContent = '';
 
     // Try Supabase stream URL first, fallback to direct embed
@@ -1001,21 +1009,50 @@
 
       const ping = Date.now() - startTime;
 
-      player.innerHTML = `
-        <iframe
-          src="${url}"
-          title="${esc(item.title)}"
-          allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-          allowfullscreen
-          referrerpolicy="no-referrer"
-          style="width:100%;height:100%;min-height:420px;border:0;">
-        </iframe>
-      `;
+      // Construct iframe safely with complete fullscreen permissions
+      const iframe = document.createElement('iframe');
+      iframe.src = url;
+      iframe.title = item.title;
+      iframe.setAttribute('allow', 'accelerometer *; autoplay *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *; fullscreen *');
+      iframe.setAttribute('allowfullscreen', 'true');
+      iframe.setAttribute('webkitallowfullscreen', 'true');
+      iframe.setAttribute('mozallowfullscreen', 'true');
+      iframe.allow = "accelerometer *; autoplay *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *; fullscreen *";
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "no-referrer";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.border = "0";
+      iframe.style.display = "block";
 
-      if (loading) loading.style.display = 'none';
-      if (statusDot) statusDot.className = 'server-status-dot online';
-      if (statusText) statusText.textContent = `${server.name} — Stream active, ${esc(item.title)}`;
-      if (statusPing) statusPing.textContent = `${ping}ms`;
+      // Clear previous content but keep loading if still loading
+      player.querySelectorAll('iframe').forEach(el => el.remove());
+      player.appendChild(iframe);
+
+      if (iframe) {
+        iframe.onload = () => {
+          player.classList.add('loaded');
+          if (loading) loading.style.display = 'none';
+          if (statusDot) statusDot.className = 'server-status-dot online';
+          if (statusText) statusText.textContent = `${server.name} — Stream active, ${esc(item.title)}`;
+          if (statusPing) statusPing.textContent = `${Date.now() - startTime}ms`;
+        };
+        // Fallback timeout
+        setTimeout(() => {
+          if (!player.classList.contains('loaded')) {
+            player.classList.add('loaded');
+            if (loading) loading.style.display = 'none';
+            if (statusDot) statusDot.className = 'server-status-dot online';
+            if (statusText) statusText.textContent = `${server.name} — Stream active, ${esc(item.title)}`;
+            if (statusPing) statusPing.textContent = `${Date.now() - startTime}ms`;
+          }
+        }, 10000);
+      } else {
+        if (loading) loading.style.display = 'none';
+        if (statusDot) statusDot.className = 'server-status-dot online';
+        if (statusText) statusText.textContent = `${server.name} — Stream active, ${esc(item.title)}`;
+        if (statusPing) statusPing.textContent = `${ping}ms`;
+      }
     };
 
     tryLoad().catch(() => {
@@ -1030,6 +1067,28 @@
         </div>
       `;
     });
+  }
+
+  function renderPlayerTopCenterOverlay(item, season, epObj, isSeries) {
+    return '';
+  }
+
+  function renderPlayerBottomOverlay(item, season, epObj, isSeries) {
+    const nextEpBtn = (isSeries && epObj) ? `<button class="player-ctrl-btn" data-action="go-watch-episode" data-id="${item.id}" data-season="${season.season}" data-ep="${epObj.ep + 1}" title="Next Episode"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5"/></svg></button>` : '';
+
+    return `
+      <div class="player-bottom-bar" id="playerBottomBar">
+        <div class="player-bottom-controls">
+          <div class="player-bottom-left">
+            ${nextEpBtn}
+          </div>
+
+          <div class="player-bottom-right">
+            <button class="player-ctrl-btn" data-action="player-toggle-theater" title="Theater Mode (T)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/></svg></button>
+            <button class="player-ctrl-btn" data-action="player-toggle-fullscreen" title="Fullscreen (F)"><svg class="fs-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg><svg class="fs-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="display:none;"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg></button>
+          </div>
+        </div>
+      </div>`;
   }
 
   function renderWatch(id, params) 
@@ -1054,108 +1113,20 @@
 
     const html = `
     <div class="watch-page">
-      <div class="player-shell" id="playerShell">
-        <!-- Professional Player UI -->
-        <div class="pro-player" id="proPlayer">
-          <!-- Loading Screen -->
+      <div class="hp-video-player" id="hpVideoPlayer">
+        <div class="video-container" id="videoContainer">
           <div class="player-loading" id="playerLoading">
             <div class="player-loading-inner">
-              <div class="player-spinner"></div>
-              <div class="player-loading-title">${esc(item.title)}</div>
-              <div class="player-loading-sub">Stream taiyaar ho raha hai...</div>
-            </div>
-          </div>
-
-          <!-- iframe embed area -->
-          <div class="player-iframe-wrap" id="nexstreamPlayer">
-            <div class="player-placeholder">
-              <div class="player-placeholder-icon">${ic.play}</div>
-              <div>Player load ho raha hai...</div>
-            </div>
-          </div>
-
-          <!-- Top bar: Title + back -->
-          <div class="player-top-bar" id="playerTopBar">
-            <div class="player-top-left">
-              <button class="p-back-btn" data-action="open-detail" data-id="${item.id}" title="Back to Details">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" width="18" height="18"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
-              </button>
-              <div class="player-top-info">
-                <div class="player-top-title">${esc(item.title)}</div>
-                ${isSeries && epObj ? `<div class="player-top-ep">Season ${season.season} &nbsp;·&nbsp; Episode ${epObj.ep}: ${esc(epObj.title)}</div>` : ''}
-              </div>
-            </div>
-            <div class="player-top-right">
-              <span class="player-live-badge">
-                <span class="live-dot"></span>
-                LIVE
-              </span>
-              <span class="player-quality-badge">4K UHD</span>
+               <div class="player-spinner"></div>
+               <div class="player-loading-title">${esc(item.title)}</div>
+               <div class="player-loading-sub">Preparing stream...</div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- ============ PROFESSIONAL SERVER & LANGUAGE SELECTOR ============ -->
-      <div class="container">
-        <div class="pro-controls-bar">
-
-          <!-- Server Selector -->
-          <div class="pro-ctrl-section">
-            <div class="pro-ctrl-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="13" height="13"><rect x="2" y="3" width="20" height="5" rx="1"/><rect x="2" y="10" width="20" height="5" rx="1"/><rect x="2" y="17" width="20" height="5" rx="1"/></svg>
-              Stream Server
-            </div>
-            <div class="server-tabs" id="serverTabs">
-              ${Object.entries(STREAM_SERVERS).map(([key, srv], i) => `
-              <button class="server-tab ${i === 0 ? 'active' : ''}" data-server="${key}" data-action="switch-server" title="${srv.name} - ${srv.badge}">
-                <span class="server-tab-icon">${srv.icon}</span>
-                <span class="server-tab-name">${srv.name}</span>
-                <span class="server-tab-badge">${srv.badge}</span>
-              </button>`).join('')}
-            </div>
-          </div>
-
-          <!-- Language / Audio Selector -->
-          <div class="pro-ctrl-section">
-            <div class="pro-ctrl-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="13" height="13"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2c-3 4-3 12 0 20M12 2c3 4 3 12 0 20"/></svg>
-              Audio / Subtitle
-            </div>
-            <div class="lang-tabs" id="langTabs">
-              ${(item.languages || ['English']).map((lang, i) => {
-                const langKey = lang.toLowerCase().replace(/\s+/g, '-');
-                const flag = { 'hindi': '🇮🇳', 'english': '🇺🇸', 'japanese': '🇯🇵', 'korean': '🇰🇷', 'tamil': '🇮🇳', 'telugu': '🇮🇳', 'german': '🇩🇪', 'french': '🇫🇷', 'spanish': '🇪🇸' };
-                const langLower = lang.toLowerCase();
-                const emoji = Object.entries(flag).find(([k]) => langLower.includes(k))?.[1] || '🌐';
-                const subOrDub = (langLower.includes('japanese') || langLower.includes('korean')) ? 'SUB' : 'DUB';
-                return `<button class="lang-tab ${i === 0 ? 'active' : ''}" data-lang="${langKey}" data-lang-name="${lang}" data-action="switch-lang">
-                  <span class="lang-flag">${emoji}</span>
-                  <span class="lang-name">${lang}</span>
-                  <span class="lang-type-badge ${subOrDub === 'SUB' ? 'sub' : 'dub'}">${subOrDub}</span>
-                </button>`;
-              }).join('')}
-            </div>
-          </div>
-
-          <!-- Quality Badges -->
-          <div class="pro-ctrl-section">
-            <div class="pro-ctrl-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="13" height="13"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-              Quality
-            </div>
-            <div class="quality-chips">
-              ${(item.quality || ['4K', 'HD']).map((q, i) => `<span class="quality-chip ${i === 0 ? 'active' : ''}">${q}</span>`).join('')}
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Server Status Bar -->
-        <div class="server-status-bar" id="serverStatusBar">
-          <div class="server-status-dot loading" id="serverStatusDot"></div>
-          <span id="serverStatusText">Server se connect ho raha hai...</span>
-          <span class="server-status-ping" id="serverStatusPing"></span>
+        <!-- Professional Interactive Overlay Controls -->
+        <div class="player-controls-overlay" id="playerControlsOverlay">
+          ${renderPlayerBottomOverlay(item, season, epObj, isSeries)}
         </div>
       </div>
 
@@ -1184,6 +1155,15 @@
         </div>
 
         <div class="watch-actions">
+          <button class="btn btn-primary btn-sm" data-action="player-toggle-fullscreen" title="Fullscreen (F)">
+            <svg class="fs-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="vertical-align:middle;margin-right:6px;"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <svg class="fs-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="display:none;vertical-align:middle;margin-right:6px;"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+            Fullscreen
+          </button>
+          <button class="btn btn-outline btn-sm" data-action="player-toggle-theater" title="Theater Mode (T)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="vertical-align:middle;margin-right:6px;"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/></svg>
+            Theater
+          </button>
           <button class="btn btn-outline btn-sm" data-action="toggle-watchlist" data-id="${item.id}">
             ${inWL ? ic.check + ' In Watchlist' : ic.plus + ' Watchlist'}
           </button>
@@ -1867,12 +1847,123 @@
         break;
       }
 
-      case 'go-watch':
+      case 'player-toggle-play': {
+        const plays = document.querySelectorAll('.player-bottom-left .play-icon');
+        const pauses = document.querySelectorAll('.player-bottom-left .pause-icon');
+        if (plays.length && pauses.length) {
+          const isPaused = pauses[0].style.display === 'none';
+          plays.forEach(p => p.style.display = isPaused ? 'none' : 'block');
+          pauses.forEach(p => p.style.display = isPaused ? 'block' : 'none');
+          showToast(isPaused ? '▶ Playback Resumed' : '⏸ Playback Paused');
+        }
+        break;
+      }
+
+      case 'player-seek-back': {
+        state.playerPct = Math.max(0, (state.playerPct || 15) - 5);
+        document.getElementById('playerTimelineProgress').style.width = state.playerPct + '%';
+        document.getElementById('playerTimelineHandle').style.left = state.playerPct + '%';
+        const curTimeStr = Math.floor((state.playerPct / 100) * 115) + ':20';
+        document.getElementById('playerCurrentTime').textContent = curTimeStr;
+        showToast('⏪ Rewound 10s');
+        break;
+      }
+
+      case 'player-seek-fw': {
+        state.playerPct = Math.min(100, (state.playerPct || 15) + 5);
+        document.getElementById('playerTimelineProgress').style.width = state.playerPct + '%';
+        document.getElementById('playerTimelineHandle').style.left = state.playerPct + '%';
+        const curTimeStr = Math.floor((state.playerPct / 100) * 115) + ':20';
+        document.getElementById('playerCurrentTime').textContent = curTimeStr;
+        showToast('⏩ Fast Forwarded 10s');
+        break;
+      }
+
+      case 'player-timeline-click': {
+        const container = document.getElementById('playerTimeline');
+        if (container && e.clientX) {
+          const rect = container.getBoundingClientRect();
+          const pct = Math.min(100, Math.max(0, Math.round(((e.clientX - rect.left) / rect.width) * 100)));
+          state.playerPct = pct;
+          const progBar = document.getElementById('playerTimelineProgress');
+          const handle = document.getElementById('playerTimelineHandle');
+          if (progBar) progBar.style.width = pct + '%';
+          if (handle) handle.style.left = pct + '%';
+          const curTimeStr = Math.floor((pct / 100) * 115) + ':20';
+          const timeElem = document.getElementById('playerCurrentTime');
+          if (timeElem) timeElem.textContent = curTimeStr;
+        }
+        break;
+      }
+
+      case 'player-skip-intro': {
+        state.playerPct = Math.min(100, (state.playerPct || 15) + 12);
+        document.getElementById('playerTimelineProgress').style.width = state.playerPct + '%';
+        document.getElementById('playerTimelineHandle').style.left = state.playerPct + '%';
+        const curTimeStr = Math.floor((state.playerPct / 100) * 115) + ':20';
+        document.getElementById('playerCurrentTime').textContent = curTimeStr;
+        showToast('⏭ Intro Skipped');
+        document.getElementById('skipIntroBtn').style.display = 'none';
+        break;
+      }
+
+      case 'player-toggle-mute': {
+        const volSlider = document.getElementById('playerVolSlider');
+        const volOn = document.querySelector('#playerMuteBtn .vol-on');
+        const volOff = document.querySelector('#playerMuteBtn .vol-off');
+        if (volSlider) {
+          const isMute = volSlider.value > '0';
+          volSlider.value = isMute ? '0' : '100';
+          if (volOn) volOn.style.display = isMute ? 'none' : 'block';
+          if (volOff) volOff.style.display = isMute ? 'block' : 'none';
+          showToast(isMute ? '🔇 Volume Muted' : '🔊 Volume Restored');
+        }
+        break;
+      }
+
+      case 'player-toggle-speed-menu': {
+        document.getElementById('playerSpeedDropdown')?.classList.toggle('open');
+        break;
+      }
+
+      case 'player-set-speed': {
+        const spd = el.dataset.speed;
+        const lbl = document.getElementById('playerSpeedLabel');
+        if (lbl) lbl.textContent = parseFloat(spd).toFixed(1) + 'x';
+        document.querySelectorAll('.speed-opt').forEach(opt => {
+          opt.classList.toggle('active', opt.dataset.speed === spd);
+        });
+        document.getElementById('playerSpeedDropdown')?.classList.remove('open');
+        showToast(`Playback Speed set to ${spd}x`);
+        break;
+      }
+
+      case 'player-toggle-theater': {
+        const shell = document.getElementById('hpVideoPlayer');
+        if (shell) {
+          const tMode = shell.classList.toggle('theater-mode');
+          showToast(tMode ? '🎭 Theater Mode Enabled' : '🎭 Theater Mode Disabled');
+        }
+        break;
+      }
+
+      case 'player-toggle-pip': {
+        showToast('📺 Picture-In-Picture activated');
+        break;
+      }
+
+      case 'player-toggle-fullscreen': {
+        toggleFullscreen();
+        break;
+      }
+
+      case 'go-watch': {
         navigate('watch', { id });
         state.playerPct = 12;
         break;
+      }
 
-      case 'go-watch-episode':
+      case 'go-watch-episode': {
         navigate('watch', {
           id,
           season: parseInt(el.dataset.season, 10) || 1,
@@ -1880,6 +1971,7 @@
         });
         state.playerPct = 5;
         break;
+      }
 
       case 'series-season':
         state.params = { id: el.dataset.id, season: parseInt(el.dataset.season, 10) };
@@ -2140,16 +2232,102 @@
     }
   });
 
-  /* Keyboard Accessibility */
+  /* ============================================================
+     FULLSCREEN CONTROLS ENGINE
+     ============================================================ */
+  function toggleFullscreen() {
+    const shell = document.getElementById('hpVideoPlayer');
+    if (!shell) return;
+
+    const isFs = !!(
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement
+    );
+
+    if (!isFs) {
+      const req = shell.requestFullscreen || shell.webkitRequestFullscreen || shell.mozRequestFullScreen || shell.msRequestFullscreen;
+      if (req) {
+        req.call(shell).catch(err => {
+          console.warn('Fullscreen request failed:', err);
+          showToast('⚠️ Fullscreen not supported or blocked');
+        });
+      }
+    } else {
+      const exit = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+      if (exit) {
+        exit.call(document).catch(err => {
+          console.warn('Exit fullscreen failed:', err);
+        });
+      }
+    }
+  }
+
+  // Synchronize fullscreen state across entire document
+  ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(evt => {
+    document.addEventListener(evt, () => {
+      const isFs = !!(
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement
+      );
+      const shell = document.getElementById('hpVideoPlayer');
+      if (shell) {
+        shell.classList.toggle('is-fullscreen', isFs);
+      }
+      document.querySelectorAll('.fs-open').forEach(i => i.style.display = isFs ? 'none' : '');
+      document.querySelectorAll('.fs-close').forEach(i => i.style.display = isFs ? '' : 'none');
+      showToast(isFs ? '⛶ Fullscreen Entered' : '⛶ Fullscreen Exited');
+    });
+  });
+
+  /* Keyboard Accessibility & Video Player Shortcuts */
   document.addEventListener('keydown', (e) => {
+    const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName);
+    
     if (e.key === 'Escape') {
       closeModal();
       document.getElementById('mobile-nav')?.classList.remove('open');
+      if (document.fullscreenElement) document.exitFullscreen();
     }
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
       navigate('browse', { title: 'Search 4K Cinema' });
       setTimeout(() => document.getElementById('searchInput')?.focus(), 80);
+    }
+
+    // Player specific shortcuts (if not typing in input)
+    if (!isInput && (state.view === 'watch' || state.page === 'watch')) {
+      const key = e.key.toLowerCase();
+      if (e.key === ' ' || key === 'k') {
+        e.preventDefault();
+        const btn = document.querySelector('#playerPlayHero');
+        if (btn) btn.click();
+      } else if (key === 'f') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (key === 'm') {
+        e.preventDefault();
+        const btn = document.getElementById('playerMuteBtn');
+        if (btn) btn.click();
+      } else if (key === 't') {
+        e.preventDefault();
+        const shell = document.getElementById('hpVideoPlayer');
+        if (shell) {
+          const tMode = shell.classList.toggle('theater-mode');
+          showToast(tMode ? '🎭 Theater Mode Enabled' : '🎭 Theater Mode Disabled');
+        }
+      } else if (key === 'j' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const btn = document.querySelector('[data-action="player-seek-back"]');
+        if (btn) btn.click();
+      } else if (key === 'l' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        const btn = document.querySelector('[data-action="player-seek-fw"]');
+        if (btn) btn.click();
+      }
     }
   });
 
@@ -2165,6 +2343,31 @@
      INITIALIZATION
      ============================================================ */
   function initHPStream() {
+    const canvas = document.getElementById('ambient-canvas');
+    if (canvas && canvas.getContext) {
+      const ctx = canvas.getContext('2d');
+      // Set the canvas dimensions
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // Set the animation frame for the lighting effect
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(229, 9, 20, 0.08)';
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, 400, 0, Math.PI * 2);
+        ctx.fill();
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }, { passive: true });
+    }
+
+
     render();
     resetHeroTimer();
     loadHPStreamTMDB();

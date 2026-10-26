@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ROLL RUSH: SKYLINE - Simple Test</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; color: white; font-family: monospace; }
+        #console { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div id="console">
+        Testing module loading...
+        <div id="status">Loading...</div>
+    </div>
+    
+    <canvas id="game-canvas"></canvas>
+    
+    <script type="module">
+        // Update status function
+        function updateStatus(message) {
+            document.getElementById('status').textContent = message;
+            console.log(message);
+        }
+        
+        try {
+            updateStatus('Importing Physics...');
+            import('./src/js/Physics.js').then(module => {
+                updateStatus('Physics imported successfully');
+                
+                updateStatus('Importing Player...');
+                return import('./src/js/Player.js');
+            }).then(module => {
+                updateStatus('Player imported successfully');
+                
+                updateStatus('Importing GameState...');
+                return import('./src/js/GameState.js');
+            }).then(module => {
+                updateStatus('GameState imported successfully');
+                
+                updateStatus('Importing LevelData...');
+                return import('./src/js/LevelData.js');
+            }).then(module => {
+                updateStatus('LevelData imported successfully');
+                
+                updateStatus('Importing LevelManager...');
+                return import('./src/js/LevelManager.js');
+            }).then(module => {
+                updateStatus('LevelManager imported successfully');
+                
+                updateStatus('Importing Game...');
+                return import('./src/js/Game.js');
+            }).then(module => {
+                updateStatus('Game imported successfully!');
+                
+                updateStatus('Creating game instance...');
+                const game = new module.Game();
+                updateStatus('Game instance created!');
+                
+                // Try to initialize
+                updateStatus('Initializing game...');
+                // Don't start the game loop yet, just test construction
+                
+            }).catch(error => {
+                updateStatus('Error: ' + error.message);
+                console.error(error);
+            });
+            
+        } catch (error) {
+            updateStatus('Error: ' + error.message);
+            console.error(error);
+        }
+    </script>
+</body>
+</html>
